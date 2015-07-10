@@ -1,17 +1,29 @@
-def isPrime(a):
-	m=0
-	for j in range(1,a/2+1):
-		if (a%j)==0:
-			m+=1
-	return m+1
-i=1
-n=1
-div=500
-while (i>=1):
-	l=isPrime(i)
-	ans=i
-	if l>div:
-		print ans
-		break
-	n+=1
-	i=n*(n+1)/2
+import math
+ 
+ 
+def isprime(n):
+	for num in range(2,int(math.floor(math.sqrt(n))+1)):
+		if n%num==0:
+			return(False)
+	return(True)
+ 
+def findfactors(n):
+	primes=[]
+	b=0
+	for num in range(2,int(math.floor(n/2)+1)):
+		if isprime(n):
+			primes.append(n)
+			break
+		c=n
+		if(n%num==0 and isprime(num)):
+			
+			c=n/num
+			primes.append(num)
+			while(c%num==0):
+				primes.append(num)
+				b=c
+				c=b/num
+		n=c
+	return(primes)
+ 
+print findfactors(100)
